@@ -17,7 +17,8 @@ export default {
       searchedCountries: [],
       selectedRegion: "All Countries",
       input: "",
-      isLoading: true,
+      isLoading: false,
+      error: false,
     };
   },
   created() {
@@ -31,8 +32,8 @@ export default {
         const response = await axios.get(`https://restcountries.com/v3.1/all`);
         this.countries = response.data.filter((c) => c.population > 0);
         this.isLoading = false;
-      } catch (error) {
-        console.log("Error", error);
+      } catch (e) {
+        this.error = e;
       }
     },
 
@@ -98,6 +99,12 @@ export default {
     />
     <div v-if="isLoading" class="animate-spin">
       <font-awesome-icon icon="fa-solid fa-spinner" size="xl" />
+    </div>
+    <div
+      v-else-if="error"
+      :class="[isDark ? 'text-dark-text' : 'text-light-text']"
+    >
+      Whoops, something went wrong. Check back soon 🤟🏻
     </div>
     <div
       v-else
