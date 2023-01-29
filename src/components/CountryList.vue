@@ -33,7 +33,9 @@ export default {
         this.countries = response.data.filter((c) => c.population > 0);
         this.isLoading = false;
       } catch (e) {
-        this.error = e;
+        this.loading = false;
+        this.error = true;
+        console.log(e);
       }
     },
 
