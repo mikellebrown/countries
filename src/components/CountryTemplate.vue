@@ -44,8 +44,9 @@ const darkText = ref("text-dark-text");
           v-if="data.capital"
           class="text-bold text-md"
           :class="[isDark ? darkText : lightText]"
-          ><b>Capital:</b> {{ data.capital[0] }}
+          ><b>Capital:</b> {{ data.capital[0] ?? data.capital[0] }}
         </span>
+        <span v-else></span>
       </div>
     </div>
   </router-link>

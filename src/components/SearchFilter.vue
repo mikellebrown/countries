@@ -47,11 +47,11 @@ const handleInputChange = () => {
     <div
       class="flex xs:w-full md:w-1/2 xs:justify-center md:justify-end xs:mt-4 md:mt-0"
     >
-      <div class="relative">
+      <div class="flex relative xs:w-full md:w-auto">
         <!-- Dropdown toggle button -->
         <button
           @click="state.show = !state.show"
-          class="flex items-center p-4 rounded-md shadow-md"
+          class="flex items-center xs:w-full md:w-auto xs:justify-center md:justify-start p-4 rounded-md shadow-md"
           :class="[isDark ? 'bg-dark-element' : 'bg-light-element']"
         >
           <span class="mr-4">Filter By Region</span>
@@ -60,7 +60,7 @@ const handleInputChange = () => {
         <!-- Dropdown menu -->
         <div
           v-show="state.show"
-          class="absolute right-0 py-2 mt-2 rounded-md shadow-xl w-44"
+          class="absolute right-0 py-2 xs:mt-12 md:mt-16 rounded-md shadow-xl xs:w-full md:w-44 z-10"
           :class="[isDark ? 'bg-dark-element' : 'bg-light-element']"
         >
           <div v-for="menuLink in menuLinks">

@@ -21,18 +21,14 @@ onMounted(() => {
   getOneCountry();
 });
 
-const getOneCountry = async (c) => {
+const getOneCountry = async (countryCode) => {
   Country.isLoading = true;
   try {
     const response = await axios.get(
-      `https://restcountries.com/v3.1/name/${
-        c ? convertCountryCode(c).toLowerCase() : props.id
+      `https://restcountries.com/v3.1/${
+        countryCode ? `alpha/${countryCode}` : `name/${props.id}`
       }`
     );
-
-    // const response = await axios.get(
-    //   `https://restcountries.com/v3.1/name/iran`
-    // );
 
     Country.data = response.data[0];
     Country.isLoading = false;
@@ -125,13 +121,14 @@ const convertCountryCode = (c) => {
                 {{ Country.data.subregion }}
               </CountryItemTemplate>
 
-              <CountryItemTemplate
-                :is-dark="props.isDark"
-                :data="Country.data.capital[0] !== undefined"
-              >
-                <b>Capital:</b>
-                {{ Country.data.capital[0] }}
-              </CountryItemTemplate>
+              <span
+                v-if="Country.data.capital"
+                class="text-bold text-md"
+                :class="[isDark ? darkText : lightText]"
+                ><b>Capital:</b>
+                {{ Country.data.capital[0] ?? Country.data.capital[0] }}
+              </span>
+              <span v-else></span>
 
               <span
                 v-if="Country.data.borders"
@@ -142,11 +139,8 @@ const convertCountryCode = (c) => {
               </span>
             </div>
             <div class="flex flex-col w-1/2 pl-5">
-              <CountryItemTemplate
-                v-if="Country.data.tld[0]"
-                :is-dark="props.isDark"
-              >
-                <b>Capital:</b>
+              <CountryItemTemplate :is-dark="props.isDark">
+                <b>Tld:</b>
                 {{ Country.data.tld[0] }}
               </CountryItemTemplate>
 
@@ -165,7 +159,7 @@ const convertCountryCode = (c) => {
                 :class="[isDark ? darkText : lightText]"
                 ><b>Languages:</b>
                 <span v-for="language in Country.data.languages" class="ml-1">{{
-                  language
+                  language + " "
                 }}</span>
               </span>
             </div>

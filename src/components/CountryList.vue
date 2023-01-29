@@ -31,9 +31,11 @@ export default {
       try {
         const response = await axios.get(`https://restcountries.com/v3.1/all`);
         this.countries = response.data.filter((c) => c.population > 0);
+        this.countries = response.data;
         this.isLoading = false;
       } catch (e) {
         this.error = e;
+        console.log(e);
       }
     },
 
