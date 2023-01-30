@@ -21,7 +21,7 @@ const selectFilter = (selected) => {
   state.show = false;
 };
 const handleInputChange = () => {
-  emit("inputChange", state.search);
+  emit("inputChange", state.search.toLowerCase());
 };
 </script>
 

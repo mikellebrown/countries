@@ -41,9 +41,9 @@ export default {
 
     alphabeticalOrder(countries) {
       return countries.sort(function (a, b) {
-        return a.name.official === b.name.official
+        return a.name.common === b.name.common
           ? 0
-          : a.name.official < b.name.official
+          : a.name.common < b.name.common
           ? -1
           : 1;
       });
@@ -59,7 +59,7 @@ export default {
     searchCountries(input) {
       this.selectedRegion = "All Countries";
       this.filteredCountries = [];
-      this.input = input;
+      this.input = input.toLowerCase();
       const search = this.countries.filter((c) =>
         c.name.common.toLowerCase().includes(this.input)
       );

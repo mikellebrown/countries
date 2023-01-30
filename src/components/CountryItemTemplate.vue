@@ -3,7 +3,7 @@ import { defineProps } from "vue";
 
 const props = defineProps({
   isDark: Boolean,
-  data: String,
+  data: String | Number,
 });
 </script>
 

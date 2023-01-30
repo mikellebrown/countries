@@ -32,7 +32,6 @@ const getOneCountry = async (countryCode) => {
 
     Country.data = response.data[0];
     Country.isLoading = false;
-    console.log(response.data[0]);
   } catch (error) {
     console.log(error);
   }
@@ -89,16 +88,15 @@ const convertCountryCode = (c) => {
           </div>
           <div class="flex w-full justify-between flex-row">
             <div class="flex w-1/2 flex-col xs:pl-0 md:pl-20">
-              <!-- TO DO: Access native name  -->
               <CountryItemTemplate
-                :data="Country.data.name.official !== undefined"
+                :data="Country.data.name.official"
                 :is-dark="props.isDark"
               >
                 <b>Common Name:</b> {{ Country.data.name.common }}
               </CountryItemTemplate>
 
               <CountryItemTemplate
-                :data="Country.data.population !== undefined"
+                :data="Country.data.population"
                 :is-dark="props.isDark"
               >
                 <b>Population:</b>
@@ -106,7 +104,7 @@ const convertCountryCode = (c) => {
               </CountryItemTemplate>
 
               <CountryItemTemplate
-                :data="Country.data.region !== undefined"
+                :data="Country.data.region"
                 :is-dark="props.isDark"
               >
                 <b>Region:</b>
@@ -114,7 +112,7 @@ const convertCountryCode = (c) => {
               </CountryItemTemplate>
 
               <CountryItemTemplate
-                :data="Country.data.subregion !== undefined"
+                :data="Country.data.subregion"
                 :is-dark="props.isDark"
               >
                 <b>Sub Region:</b>

@@ -28,7 +28,7 @@ const darkText = ref("text-dark-text");
         alt="{{  data.name.common }}"
         class="flex object-cover h-1/2 rounded-t-md shadow-sm"
       />
-      <div class="flex w-full h-1/2 flex-col justify-center ml-5 mr-2">
+      <div class="flex w-full h-1/2 flex-col justify-center p-6">
         <span
           class="font-semibold text-xl mb-2 w-11/12"
           :class="[isDark ? darkText : lightText]"
