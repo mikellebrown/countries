@@ -34,7 +34,10 @@ export default {
         this.countries = response.data;
         this.isLoading = false;
       } catch (e) {
-        this.error = e;
+        if (e) {
+          this.isLoading = false;
+          this.error = true;
+        }
         console.log(e);
       }
     },
@@ -106,7 +109,7 @@ export default {
       v-else-if="error"
       :class="[isDark ? 'text-dark-text' : 'text-light-text']"
     >
-      Whoops, something went wrong. Check back soon 🤟🏻
+      Whoops, the server isn't taking requests. Check back soon 🤟🏻
     </div>
     <div
       v-else
